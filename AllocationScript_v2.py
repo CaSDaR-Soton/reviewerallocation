@@ -89,7 +89,6 @@ def choose_reviewers(eligible_pool: List[int], k: int) -> List[int]:
     return random.sample(eligible_pool, k)
 
 
-# --- New helper: min/max aware picking with soft-min priority ---
 def choose_reviewers_with_minmax(
     eligible_pool: List[int],
     k: int,
@@ -97,13 +96,7 @@ def choose_reviewers_with_minmax(
     min_load: Optional[int],
     max_load: Optional[int],
 ) -> List[int]:
-    """
-    Chooses up to k reviewers from eligible_pool such that:
-      - Reviewers at/over max_load are excluded.
-      - Reviewers currently below min_load are prioritized.
-      - Randomness is preserved within ties.
-    This is a 'soft' min: if not enough under-min reviewers exist, we fill from the remaining pool.
-    """
+
     # 1) Enforce max cap
     if max_load is not None:
         pool = [rid for rid in eligible_pool if loads.get(rid, 0) < max_load]
@@ -202,7 +195,7 @@ def main():
                 f"Conflict detected for Application {app_id}: assigned excluded reviewers {set(picks) & excluded}"
             )
 
-        # NEW: update loads for selected reviewers
+  
         for rid in picks:
             loads[rid] = loads.get(rid, 0) + 1
 
@@ -229,3 +222,4 @@ def main():
 if __name__ == "__main__":
 
     main()
+
