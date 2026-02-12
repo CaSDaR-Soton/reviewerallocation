@@ -10,7 +10,7 @@ from typing import List, Set, Dict, Optional
 import pandas as pd
 
 print("=== All imports successful ===")
-os.chdir ("C://Users/ls13g17/OneDrive - University of Southampton/Documents/CaSDaR/Funding call/Round 1/Files for script")
+
 APPLICANTS_FILE = "20260123_Applicants_v1.csv"
 REVIEWERS_FILE  = "20260123_reviewers_v1.csv"
 OUTPUT_FILE     = "20260101_random_allocation_no_conflicts.csv"
@@ -227,4 +227,5 @@ def main():
             print(" -", w)
 
 if __name__ == "__main__":
+
     main()
